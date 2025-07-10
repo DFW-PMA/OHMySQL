@@ -29,7 +29,7 @@ final class PersistentCoordinator
     struct ClassInfo
     {
         static let sClsId        = "PersistentCoordinator"
-        static let sClsVers      = "v1.0103"
+        static let sClsVers      = "v1.0109"
         static let sClsDisp      = sClsId+".("+sClsVers+"): "
         static let sClsCopyRight = "Copyright (C) JustMacApps 2023-2025. All Rights Reserved."
         static let bClsTrace     = true
@@ -79,6 +79,24 @@ final class PersistentCoordinator
     //  self.coordinator = Self.makeCoordinator(databaseName:"mysql")
         
         self.xcgLogMsg("\(sCurrMethodDisp) Invoked...")
+        
+        do
+        {
+            self.connect()
+
+        //  let query        = MySQLQueryRequestFactory.select("visit", condition:"select * from visit where vdate >= '2025-07-10'")
+            let mySqlQuery   = MySQLQueryRequestFactory.select("visit", condition:"vdate >= '2025-07-10'")
+            let mySqlResults = try MySQLContainer.shared.mainQueryContext?.executeQueryRequestAndFetchResult(mySqlQuery)
+
+            self.xcgLogMsg("\(sCurrMethodDisp) 'mySqlResults' object is 'typeOf' [\(String(describing: type(of: mySqlResults)))]...")
+            self.xcgLogMsg("\(sCurrMethodDisp) 'mySqlResults' object contains #(\(String(describing: mySqlResults?.count))) object(s)...")
+            self.xcgLogMsg("\(sCurrMethodDisp) 'mySqlResults' object is [\(String(describing: mySqlResults))]...")
+        //  self.xcgLogMsg("\(sCurrMethodDisp) Intermediate - 'mySqlResults' is [\(String(describing: mySqlResults))]...")
+        }
+        catch
+        {
+            self.xcgLogMsg("\(sCurrMethodDisp) Intermediate - MySQL 'select' failed - Details are [\(error)] - Error!")
+        }
 
         self.xcgLogMsg("\(sCurrMethodDisp) Exiting...")
 
