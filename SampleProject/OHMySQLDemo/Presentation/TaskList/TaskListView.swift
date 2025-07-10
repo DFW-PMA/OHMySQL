@@ -22,24 +22,39 @@
 
 import SwiftUI
 
-struct TaskListView: View {
-    @ObservedObject var viewModel = TaskListViewModel()
+struct TaskListView:View 
+{
+
+    @ObservedObject var viewModel:TaskListViewModel = TaskListViewModel()
     
-    var body: some View {
-        Group {
-            switch viewModel.state {
+    var body:some View 
+    {
+
+        Group 
+        {
+            switch viewModel.state 
+            {
             case .idle:
                 ProgressView()
                     .progressViewStyle(.circular)
             case .fetched:
-                List {
-                    ForEach(viewModel.tasks) { task in
-                        VStack(alignment: .leading) {
+                List 
+                {
+                    ForEach(viewModel.tasks)
+                    { task in
+
+                        VStack(alignment:.leading) 
+                        {
                             Text(task.name ?? "-").font(.headline)
                             Text(task.taskDescription ?? "-").font(.subheadline)
                         }
-                    }.onDelete { indexSet in
+
+                    }
+                    .onDelete 
+                    { indexSet in
+
                         try? viewModel.delete(at: indexSet)
+
                     }
                 }
             case .emptyList:
@@ -49,22 +64,34 @@ struct TaskListView: View {
             case .fetching:
                 ProgressView()
             }
-        }.onAppear {
+        }.onAppear 
+        {
             viewModel.configureData()
-        }.toolbar {
-            ToolbarItemGroup(placement: .navigationBarTrailing) {
-                Button(action: {
+        }
+        .toolbar 
+        {
+            ToolbarItemGroup(placement:.navigationBarTrailing) 
+            {
+                Button(action: 
+                {
                     try? viewModel.deleteAll()
-                }, label: {
-                    Label("", systemImage: "folder.badge.minus")
+                }, 
+                label: 
+                {
+                    Label("", systemImage:"folder.badge.minus")
                 })
-                
-                Button(action: {
+                Button(action: 
+                {
                     viewModel.addRandomTask()
-                }, label: {
-                    Label("", systemImage: "doc.badge.plus")
+                }, 
+                label: 
+                {
+                    Label("", systemImage:"doc.badge.plus")
                 })
             }
         }
+
     }
+
 }
+

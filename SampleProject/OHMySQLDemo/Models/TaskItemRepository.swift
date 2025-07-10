@@ -21,60 +21,93 @@
 //
 
 import Foundation
-import OHMySQL
+// import OHMySQL
 
-final class TaskItemRepository {
-    let coordinator: PersistentCoordinator
+final class TaskItemRepository 
+{
+
+    let coordinator:PersistentCoordinator
     
-    init(coordinator: PersistentCoordinator) {
+    init(coordinator:PersistentCoordinator)
+    {
+
         self.coordinator = coordinator
+
     }
     
-    func createTable() throws {
-        let createTableString = """
-                CREATE TABLE `tasks` (
-                  `id` int(11) NOT NULL,
-                  `name` varchar(255) DEFAULT NULL,
-                  `description` varchar(10000) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
-                  `status` bigint(11) DEFAULT NULL,
-                  `data` blob NOT NULL,
-                  `preciseValue` decimal(65,30) NOT NULL
-                ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-                """
-        let primaryKeyString = "ALTER TABLE `tasks` ADD PRIMARY KEY (`id`);"
+    func createTable() throws 
+    {
+        let createTableString =
+        """
+            CREATE TABLE `tasks` 
+            (
+              `id` int(11) NOT NULL,
+              `name` varchar(255) DEFAULT NULL,
+              `description` varchar(10000) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+              `status` bigint(11) DEFAULT NULL,
+              `data` blob NOT NULL,
+              `preciseValue` decimal(65,30) NOT NULL
+            ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+        """
+
+        let primaryKeyString   = "ALTER TABLE `tasks` ADD PRIMARY KEY (`id`);"
         let incrementKeyString = "ALTER TABLE `tasks` MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;"
         
-        for query in [createTableString, primaryKeyString, incrementKeyString] {
-            let request = MySQLQueryRequest(query: query)
+        for query in [createTableString, primaryKeyString, incrementKeyString] 
+        {
+
+            let request = MySQLQueryRequest(query:query)
+
             try coordinator.mainQueryContext.execute(request)
+
         }
+
     }
     
-    func fetch() throws -> [TaskItem] {
-        let query = MySQLQueryRequestFactory.select("tasks", condition: nil)
+    func fetch() throws->[TaskItem] 
+    {
+
+        let query = MySQLQueryRequestFactory.select("tasks", condition:nil)
         let tasks = try MySQLContainer.shared.mainQueryContext?.executeQueryRequestAndFetchResult(query)
         
         return tasks?
             .compactMap { $0 }
-            .map {
+            .map 
+            {
                 let task = TaskItem()
-                task.map(fromResponse: $0)
+                task.map(fromResponse:$0)
                 return task
             } ?? []
+
     }
     
-    func addTaskItem(_ item: TaskItem, completion: @escaping (Result<Void, Error>) -> ()) {
+    func addTaskItem(_ item:TaskItem, completion:@escaping(Result<Void, Error>)->()) 
+    {
+
         coordinator.mainQueryContext.insertObject(item)
-        coordinator.mainQueryContext.save { error in
+
+        coordinator.mainQueryContext.save 
+        { error in
+
             completion(error != nil ? .failure(error!) : .success(()))
+
         }
+
     }
     
-    func deleteTaskItem(_ item: TaskItem, completion: @escaping (Result<Void, Error>) -> ()) {
+    func deleteTaskItem(_ item:TaskItem, completion:@escaping(Result<Void, Error>)->()) 
+    {
+
         coordinator.mainQueryContext.deleteObject(item)
         
-        coordinator.mainQueryContext.save { error in
+        coordinator.mainQueryContext.save 
+        { error in
+
             completion(error != nil ? .failure(error!) : .success(()))
+
         }
+
     }
+
 }
+

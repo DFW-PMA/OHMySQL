@@ -21,126 +21,178 @@
 //
 
 import Foundation
-import OHMySQL
+// import OHMySQL
 
-final class TaskListViewModel: ObservableObject {
-    enum State {
+final class TaskListViewModel:ObservableObject 
+{
+
+    enum State 
+    {
         case idle
         case fetching
         case fetched
         case emptyList
-        case error(message: String)
+        case error(message:String)
     }
     
-    private let storeCoordinator = PersistentCoordinator()
-    private lazy var taskRepository = TaskItemRepository(coordinator: self.storeCoordinator)
+    private      let storeCoordinator:PersistentCoordinator = PersistentCoordinator()
+    private lazy var taskRepository:TaskItemRepository      = TaskItemRepository(coordinator:self.storeCoordinator)
     
-    private(set) var tasks: [TaskPresentationItem] = [] {
-        didSet {
+    private(set) var tasks:[TaskPresentationItem]           = [TaskPresentationItem]()
+    {
+        didSet 
+        {
             state = tasks.isEmpty ? .emptyList : .fetched
         }
     }
     
-    @Published var state: State = .idle
+//  @Published   var state:State                            = .idle
+    @Published   var state:State                            = .emptyList
     
-    func configureData() {
-        self.state = .fetching
+    func configureData()
+    {
+
+    //  self.state = .fetching
+        self.state = .emptyList
         
-        guard self.storeCoordinator.connect() else {
-            self.state = .error(message: "Cannot connect to database")
+        guard self.storeCoordinator.connect() 
+        else 
+        {
+            self.state = .error(message:"Cannot connect to database")
+
             return
         }
         
-        do {
-            self.tasks = try self.fetchTasks()
-        } catch {
-            do {
-                try self.handleDatabaseSelection()
-                self.handleTableCreation()
-                
-                self.tasks = (try? self.fetchTasks()) ?? []
-            } catch {
-                self.state = .error(message: "Cannot fetch tasks")
-            }
-        }
+    //  do 
+    //  {
+    //      self.tasks = try self.fetchTasks()
+    //  } 
+    //  catch 
+    //  {
+    //      do 
+    //      {
+    //          try self.handleDatabaseSelection()
+    //          self.handleTableCreation()
+    //          
+    //          self.tasks = (try? self.fetchTasks()) ?? []
+    //      } 
+    //      catch 
+    //      {
+    //          self.state = .error(message:"Cannot fetch tasks")
+    //      }
+    //  }
+
     }
     
-    func addRandomTask() {
+    func addRandomTask() 
+    {
+
         self.state = .fetching
-        
-        let task = TaskItem()
+        let task   = TaskItem()
+
         task.taskDescription = "description"
-        task.status = 1
-        task.name = "Hello"
-        task.decimalValue = 3.14
-        task.taskData = UIDevice.current.identifierForVendor?.uuidString.data(using: .utf8) as? NSData
+        task.status          = 1
+        task.name            = "Hello"
+        task.decimalValue    = 3.14
+        task.taskData        = UIDevice.current.identifierForVendor?.uuidString.data(using:.utf8) as? NSData
         
-        taskRepository.addTaskItem(task) { result in
-            DispatchQueue.main.async {
-                switch result {
+        taskRepository.addTaskItem(task) 
+        { result in
+
+            DispatchQueue.main.async 
+            {
+                switch result 
+                {
                 case .success:
                     self.tasks = (try? self.fetchTasks()) ?? []
                 case .failure:
-                    self.state = .error(message: "Cannot create a task")
+                    self.state = .error(message:"Cannot create a task")
                 }
             }
+
         }
+
     }
     
-    func deleteAll() throws {
-        guard let tasks = try? taskRepository.fetch() else {
-            return
-        }
-        
-        try delete(at: IndexSet(integersIn: tasks.startIndex...tasks.endIndex - 1))
+    func deleteAll() throws 
+    {
+
+        guard let tasks = try? taskRepository.fetch() 
+        else { return }
+
+        try delete(at:IndexSet(integersIn:tasks.startIndex...tasks.endIndex - 1))
+
     }
     
-    func delete(at indexSet: IndexSet) throws {
-        guard let tasks = try? taskRepository.fetch() else {
-            return
-        }
+    func delete(at indexSet:IndexSet) throws 
+    {
+
+        guard let tasks = try? taskRepository.fetch() 
+        else { return }
         
-        let items = indexSet.map { tasks[$0] }
+        let items   = indexSet.map { tasks[$0] }
         var counter = 0
         
-        items.forEach { item in
-            taskRepository.deleteTaskItem(item) { _ in 
-                DispatchQueue.main.async {
+        items.forEach 
+        { item in
+
+            taskRepository.deleteTaskItem(item) 
+            { _ in 
+
+                DispatchQueue.main.async 
+                {
                     counter += 1
                     
-                    if counter == items.count {
+                    if counter == items.count 
+                    {
                         self.tasks = (try? self.fetchTasks()) ?? []
                     }
                 }
+
             }
+
         }
+
     }
     
-    private func handleDatabaseSelection() throws {
-        if storeCoordinator.selectDatabase("tasks") {
+    private func handleDatabaseSelection() throws
+    {
+
+        if storeCoordinator.selectDatabase("tasks") 
+        {
             return
         }
         
         try storeCoordinator.createDatabase("tasks")
         
-        if !storeCoordinator.selectDatabase("tasks") {
+        if !storeCoordinator.selectDatabase("tasks")
+        {
             throw URLError(.badServerResponse)
         }
+
     }
     
-    private func handleTableCreation() {
+    private func handleTableCreation() 
+    {
+
         try? taskRepository.createTable()
+
     }
     
-    private func fetchTasks() throws -> [TaskPresentationItem] {
+    private func fetchTasks() throws->[TaskPresentationItem] 
+    {
+
         let tasks = try taskRepository.fetch()
         
-        return tasks.map {
-            TaskPresentationItem(id: $0.taskId?.stringValue ?? UUID().uuidString,
-                                 name: $0.name as? String,
-                                 status: $0.status as? Int,
-                                 taskDescription: $0.taskDescription as? String)
-            
+        return tasks.map 
+        {
+            TaskPresentationItem(id:             $0.taskId?.stringValue ?? UUID().uuidString,
+                                 name:           $0.name as? String,
+                                 status:         $0.status as? Int,
+                                 taskDescription:$0.taskDescription as? String)
         }
+
     }
+
 }
+

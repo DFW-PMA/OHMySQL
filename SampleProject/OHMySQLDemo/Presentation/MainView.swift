@@ -22,32 +22,50 @@
 
 import SwiftUI
 
-struct MainView: View {
-    var myBool = true
+struct MainView:View 
+{
+
+    var myBool:Bool = true
     
-    var body: some View {
-        if myBool {
-            TabView {
-                NavigationView {
+    var body:some View 
+    {
+
+        if (myBool == true)
+        {
+            TabView 
+            {
+                NavigationView 
+                {
                     TaskListView()
-                }.tabItem {
-                    Label("Tasks", systemImage: "list.bullet")
+                }
+                .tabItem 
+                {
+                    Label("Tasks", systemImage:"list.bullet")
                 }
                 
-                ConfigurationView().tabItem {
-                    Label("Settings", systemImage: "gear")
+                ConfigurationView()
+                .tabItem 
+                {
+                    Label("Settings", systemImage:"gear")
                 }
             }
-        } else {
-            List() {
+        } 
+        else 
+        {
+            List() 
+            {
                 
             }
         }
+
     }
+
 }
 
-struct SwiftUIView_Previews: PreviewProvider {
-    static var previews: some View {
+struct SwiftUIView_Previews:PreviewProvider 
+{
+    static var previews:some View 
+    {
         MainView()
     }
 }

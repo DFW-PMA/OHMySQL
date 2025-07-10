@@ -24,76 +24,99 @@ import Foundation
 import Combine
 
 @propertyWrapper
-struct Storage<T> {
-    private let key: String
+struct Storage<T> 
+{
+
+    private let key:String
     
-    init(key: String) {
+    init(key:String) 
+    {
         self.key = key
     }
     
-    var wrappedValue: T? {
-        get {
+    var wrappedValue: T? 
+    {
+        get 
+        {
             UserDefaults.standard.value(forKey: key) as? T
         }
-        set {
+        set 
+        {
             UserDefaults.standard.set(newValue, forKey: key)
         }
     }
+
 }
 
-struct SettingsData {
-    @Storage(key: "port")
-    static var port: String?
+struct SettingsData 
+{
+
+    @Storage(key:"port")
+    static var port:String?
     
-    @Storage(key: "username")
-    static var username: String?
+    @Storage(key:"username")
+    static var username:String?
     
-    @Storage(key: "password")
-    static var password: String?
+    @Storage(key:"password")
+    static var password:String?
     
-    @Storage(key: "serverName")
-    static var serverName: String?
+    @Storage(key:"serverName")
+    static var serverName:String?
     
-    @Storage(key: "database")
-    static var database: String?
+    @Storage(key:"database")
+    static var database:String?
     
-    @Storage(key: "socket")
-    static var socket: String?
+    @Storage(key:"socket")
+    static var socket:String?
+
 }
 
-final class ConfigurationViewModel: ObservableObject {
-    @Published var port = SettingsData.port ?? ""
-    @Published var username = SettingsData.username ?? ""
-    @Published var password = SettingsData.password ?? ""
-    @Published var serverName = SettingsData.serverName ?? ""
-    @Published var database = SettingsData.database ?? ""
-    @Published var socket = SettingsData.socket ?? ""
+final class ConfigurationViewModel:ObservableObject 
+{
+
+    @Published var port:String       = SettingsData.port       ?? ""
+    @Published var username:String   = SettingsData.username   ?? ""
+    @Published var password:String   = SettingsData.password   ?? ""
+    @Published var serverName:String = SettingsData.serverName ?? ""
+    @Published var database:String   = SettingsData.database   ?? ""
+    @Published var socket:String     = SettingsData.socket     ?? ""
     
-    private var cancellables: Set<AnyCancellable> = []
+    private var cancellables:Set<AnyCancellable> = []
     
-    func viewLoaded() {
-        $port.sink {
+    func viewLoaded() 
+    {
+
+        $port.sink 
+        {
             SettingsData.port = $0
-        }.store(in: &cancellables)
+        }.store(in:&cancellables)
         
-        $username.sink {
+        $username.sink 
+        {
             SettingsData.username = $0
-        }.store(in: &cancellables)
+        }.store(in:&cancellables)
         
-        $password.sink {
+        $password.sink 
+        {
             SettingsData.password = $0
-        }.store(in: &cancellables)
+        }.store(in:&cancellables)
         
-        $serverName.sink {
+        $serverName.sink 
+        {
             SettingsData.serverName = $0
-        }.store(in: &cancellables)
+        }.store(in:&cancellables)
         
-        $database.sink {
+        $database.sink 
+        {
             SettingsData.database = $0
-        }.store(in: &cancellables)
+        }.store(in:&cancellables)
         
-        $socket.sink {
+        $socket.sink 
+        {
             SettingsData.socket = $0
-        }.store(in: &cancellables)
+        }.store(in:&cancellables)
+
     }
+
 }
+

@@ -21,35 +21,51 @@
 //
 
 import Foundation
-import OHMySQL
+// import OHMySQL
 
 @objc
-final class TaskItem: NSObject {
-    @objc var decimalValue: NSNumber?
-    @objc var name: NSString?
-    @objc var status: NSNumber?
-    @objc var taskData: NSData?
-    @objc var taskDescription: NSString?
-    @objc var taskId: NSNumber?
+final class TaskItem:NSObject 
+{
+
+    @objc var decimalValue:NSNumber?
+    @objc var name:NSString?
+    @objc var status:NSNumber?
+    @objc var taskData:NSData?
+    @objc var taskDescription:NSString?
+    @objc var taskId:NSNumber?
+
 }
 
-extension TaskItem: MySQLMappingProtocol {
-    func mappingDictionary() -> [AnyHashable: Any] {
+extension TaskItem:MySQLMappingProtocol 
+{
+
+    func mappingDictionary()->[AnyHashable:Any] 
+    {
+
         [
-            "taskId" : "id",
-            "name" : "name",
+            "taskId"          : "id",
+            "name"            : "name",
             "taskDescription" : "description",
-            "status" : "status",
-            "taskData" : "data",
-            "decimalValue" : "preciseValue"
+            "status"          : "status",
+            "taskData"        : "data",
+            "decimalValue"    : "preciseValue"
         ]
+
     }
     
-    func mySQLTable() -> String {
+    func mySQLTable()->String 
+    {
+
         "tasks"
+
     }
     
-    func primaryKey() -> String {
+    func primaryKey()->String 
+    {
+
         "taskId"
+
     }
+
 }
+

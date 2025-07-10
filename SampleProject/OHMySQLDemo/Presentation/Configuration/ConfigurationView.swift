@@ -22,32 +22,39 @@
 
 import SwiftUI
 
-struct ConfigurationView: View {
-    @ObservedObject var viewModel = ConfigurationViewModel()
+struct ConfigurationView:View 
+{
+
+    @ObservedObject var viewModel:ConfigurationViewModel = ConfigurationViewModel()
     
-    var body: some View {
-        VStack(spacing: 20) {
-            TextField("User", text: $viewModel.username)
-            TextField("Password", text: $viewModel.password)
-            TextField("Server name", text: $viewModel.serverName)
-            TextField("Port", text: $viewModel.port)
-            TextField("Database", text: $viewModel.database)
-            TextField("Socket", text: $viewModel.socket)
+    var body:some View 
+    {
+
+        VStack(spacing:20) 
+        {
+            TextField("User",        text:$viewModel.username)
+            TextField("Password",    text:$viewModel.password)
+            TextField("Server name", text:$viewModel.serverName)
+            TextField("Port",        text:$viewModel.port)
+            TextField("Database",    text:$viewModel.database)
+            TextField("Socket",      text:$viewModel.socket)
         }
         .textFieldStyle(RoundedBorderTextFieldStyle())
         .textInputAutocapitalization(.never)
         .disableAutocorrection(true)
         .textCase(.lowercase)
         .padding()
-        .onAppear {
-            viewModel.viewLoaded()
-        }
+        .onAppear { viewModel.viewLoaded() }
         
     }
+
 }
 
-struct ConfigurationView_Previews: PreviewProvider {
-    static var previews: some View {
+struct ConfigurationView_Previews:PreviewProvider
+{
+    static var previews:some View 
+    {
         ConfigurationView()
     }
 }
+

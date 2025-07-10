@@ -22,10 +22,14 @@
 
 import Foundation
 
-struct TaskPresentationItem: Identifiable {
-    var id: String
-    var name: String?
-    var status: Int?
-    var taskDescription: String?
-    var taskUUID: String?
+struct TaskPresentationItem:Identifiable 
+{
+
+    var id:String
+    var name:String?
+    var status:Int?
+    var taskDescription:String?
+    var taskUUID:String?
+
 }
+
