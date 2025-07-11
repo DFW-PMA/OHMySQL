@@ -85,7 +85,9 @@ final class VisitItemRepository
     //  let query  = MySQLQueryRequestFactory.select("visit", condition:nil)
     //  let visits = try MySQLContainer.shared.mainQueryContext?.executeQueryRequestAndFetchResult(query)
 
-        let mySqlQuery = MySQLQueryRequestFactory.select("visit", condition:"vdate >= '2025-07-11'")
+    //  let mySqlQuery = MySQLQueryRequestFactory.select("visit", condition:"vdate >= '2025-07-11'")
+    //  let mySqlQuery = MySQLQueryRequestFactory.select("visit", condition:"vdate >= '2025-07-11' and type IN (0,1,2,5,7,8,9,12,13,16,17,24,25,33,35,36,37,38)")
+        let mySqlQuery = MySQLQueryRequestFactory.select("visit", condition:"vdate = '2025-07-10' and type IN (0,1,2,5,7,8,9,12,13,16,17,24,25,33,35,36,37,38)")
         let visits     = try MySQLContainer.shared.mainQueryContext?.executeQueryRequestAndFetchResult(mySqlQuery)
 
         self.xcgLogMsg("\(sCurrMethodDisp) 'visits' object is 'typeOf' [\(String(describing: type(of: visits)))]...")

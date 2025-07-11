@@ -7,11 +7,16 @@ import Foundation
 struct VisitPresentationItem:Identifiable 
 {
 
-    var id:String
-    var name:String?
-    var status:Int?
-    var visitDescription:String?
-    var visitUUID:String?
+    var id:UUID
+
+    var visitId:String
+    var patientId:String
+    var therapistId:String
+    var supervisorId:String
+
+    var visitDate:String
+    var visitTime:String
+    var visitType:String
+    var visitBilled:String
 
 }
-

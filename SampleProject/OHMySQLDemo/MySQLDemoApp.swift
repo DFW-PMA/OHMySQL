@@ -23,10 +23,18 @@
 import SwiftUI
 
 @main
-struct MySQLDemoApp: App {
-    var body: some Scene {
-        WindowGroup {
+struct MySQLDemoApp:App 
+{
+
+    var body:some Scene 
+    {
+
+        WindowGroup 
+        {
             MainView()
         }
+
     }
+
 }
+

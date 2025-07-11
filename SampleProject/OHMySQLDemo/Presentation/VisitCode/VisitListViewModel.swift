@@ -164,14 +164,31 @@ final class VisitListViewModel:ObservableObject
     private func fetchVisits() throws->[VisitPresentationItem] 
     {
 
-        let visits = try visitRepository.fetch()
+        let dateNow:Date = Date()
+        let visits       = try visitRepository.fetch()
         
         return visits.map 
         {
-            VisitPresentationItem(id:              $0.visitId?.stringValue ?? UUID().uuidString,
-                                  name:            $0.name as? String,
-                                  status:          $0.status as? Int,
-                                  visitDescription:$0.visitDescription as? String)
+            VisitPresentationItem(id:              UUID(),
+                                  visitId:         String(describing:$0.visitId).stripOptionalStringWrapper(),
+                                  patientId:       String(describing:$0.patientId).stripOptionalStringWrapper(),
+                                  therapistId:     String(describing:$0.therapistId).stripOptionalStringWrapper(),
+                                  supervisorId:    String(describing:$0.supervisorId).stripOptionalStringWrapper(),
+                                  visitDate:       String(describing:$0.visitDate).stripOptionalStringWrapper(),
+                                  visitTime:       String(describing:$0.visitTime).stripOptionalStringWrapper(),
+                                  visitType:       String(describing:$0.visitType).stripOptionalStringWrapper(),
+                                  visitBilled:     String(describing:$0.visitBilled).stripOptionalStringWrapper())
+        //  VisitPresentationItem(id:              UUID(),
+        //                        visitId:         String(describing:($0.visitId      as? Int)),
+        //                        patientId:       String(describing:($0.patientId    as? Int)),
+        //                        therapistId:     String(describing:($0.therapistId  as? Int)),
+        //                        supervisorId:    String(describing:($0.supervisorId as? Int)),
+        //                        visitDate:       String(describing:dateNow),
+        //                        visitTime:       String(describing:dateNow),
+        //                        visitType:       String(describing:($0.visitType    as? Int)),
+        //                        visitBilled:     String(describing:($0.visitBilled  as? Int)))
+        //                    //  visitDate:       ($0.visitDate    as? Date)!,
+        //                    //  visitTime:       ($0.visitTime    as? Date)!,
         }
 
     }

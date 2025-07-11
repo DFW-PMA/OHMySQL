@@ -34,19 +34,13 @@ struct MainView:View
         {
             TabView 
             {
-                NavigationView 
-                {
-                    VisitListView()
-                }
+                VisitListView()
                 .tabItem 
                 {
                     Label("Visits", systemImage:"list.bullet")
                 }
                 
-                NavigationView 
-                {
-                    TaskListView()
-                }
+                TaskListView()
                 .tabItem 
                 {
                     Label("Tasks", systemImage:"list.bullet")
@@ -61,10 +55,7 @@ struct MainView:View
         } 
         else 
         {
-            List() 
-            {
-                
-            }
+            Text("...'myBool' is false...")
         }
 
     }

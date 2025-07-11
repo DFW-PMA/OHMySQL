@@ -30,6 +30,7 @@
 		F0756E102E20173B00C31B14 /* MySQL.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0756E0B2E20173B00C31B14 /* MySQL.xcframework */; };
 		F0C39DBD2E202E8000DD2746 /* MySQL.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F0DA970B2E20185E007D0457 /* MySQL.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F0C39DBE2E202E8300DD2746 /* OpenSSL.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F0DA970C2E20185E007D0457 /* OpenSSL.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		F0CA756C2E21906900FD134A /* JmStringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0CA756B2E21906900FD134A /* JmStringExtensions.swift */; };
 		F0DA974C2E20185E007D0457 /* OHResultErrorType.m in Sources */ = {isa = PBXBuildFile; fileRef = F0DA97242E20185E007D0457 /* OHResultErrorType.m */; };
 		F0DA974D2E20185E007D0457 /* OHMySQLContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = F0DA97332E20185E007D0457 /* OHMySQLContainer.m */; };
 		F0DA974E2E20185E007D0457 /* NSData+OHSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = F0DA970F2E20185E007D0457 /* NSData+OHSerialization.m */; };
@@ -93,6 +94,7 @@
 		F06C9B122E216BA70078F33E /* VisitItemRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisitItemRepository.swift; sourceTree = "<group>"; };
 		F0756E0B2E20173B00C31B14 /* MySQL.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = MySQL.xcframework; sourceTree = "<group>"; };
 		F0756E0C2E20173B00C31B14 /* OpenSSL.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = OpenSSL.xcframework; sourceTree = "<group>"; };
+		F0CA756B2E21906900FD134A /* JmStringExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JmStringExtensions.swift; sourceTree = "<group>"; };
 		F0DA970B2E20185E007D0457 /* MySQL.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = MySQL.xcframework; sourceTree = "<group>"; };
 		F0DA970C2E20185E007D0457 /* OpenSSL.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = OpenSSL.xcframework; sourceTree = "<group>"; };
 		F0DA970E2E20185E007D0457 /* NSData+OHSerialization.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSData+OHSerialization.h"; sourceTree = "<group>"; };
@@ -226,6 +228,7 @@
 		925EAB15287C153400D80CA8 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				F0CA756B2E21906900FD134A /* JmStringExtensions.swift */,
 				F06C9B112E216BA70078F33E /* VisitItem.swift */,
 				F06C9B122E216BA70078F33E /* VisitItemRepository.swift */,
 				92775C90291ADEA20097B49C /* PersistentCoordinator.swift */,
@@ -500,6 +503,7 @@
 				F0DA97622E20185E007D0457 /* NSObject+Mapping.m in Sources */,
 				F0DA97632E20185E007D0457 /* OHMySQLQueryRequestFactory.m in Sources */,
 				F0DA97642E20185E007D0457 /* OHMySQLStoreCoordinator.m in Sources */,
+				F0CA756C2E21906900FD134A /* JmStringExtensions.swift in Sources */,
 				F0DA97652E20185E007D0457 /* TestPerson.swift in Sources */,
 				F0DA97662E20185E007D0457 /* CharsetEncoding.m in Sources */,
 				92D2598F2924125E00B43D8D /* TaskItemRepository.swift in Sources */,
@@ -640,7 +644,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.drc.01.01.25C192;
+				CURRENT_PROJECT_VERSION = 1.drc.01.10.25C192;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_ASSET_PATHS = "\"OHMySQLDemo/Preview Content\"";
 				DEVELOPMENT_TEAM = J434W9VGHF;
@@ -685,7 +689,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.drc.01.01.25C192;
+				CURRENT_PROJECT_VERSION = 1.drc.01.10.25C192;
 				DEVELOPMENT_ASSET_PATHS = "\"OHMySQLDemo/Preview Content\"";
 				DEVELOPMENT_TEAM = J434W9VGHF;
 				ENABLE_PREVIEWS = YES;

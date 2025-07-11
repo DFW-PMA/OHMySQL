@@ -10,11 +10,13 @@ final class VisitItem:NSObject
 {
 
     @objc var visitId:NSNumber?
-    @objc var name:NSString?
-    @objc var visitDescription:NSString?
-    @objc var status:NSNumber?
-    @objc var decimalValue:NSNumber?
-    @objc var visitData:NSData?
+    @objc var patientId:NSNumber?
+    @objc var therapistId:NSNumber?
+    @objc var supervisorId:NSNumber?
+    @objc var visitDate:NSDate?
+    @objc var visitTime:NSDate?
+    @objc var visitType:NSNumber?
+    @objc var visitBilled:NSNumber?
 
 }
 
@@ -25,12 +27,14 @@ extension VisitItem:MySQLMappingProtocol
     {
 
         [
-            "visitId"          : "id",
-            "name"             : "name",
-            "visitDescription" : "description",
-            "status"           : "status",
-            "decimalValue"     : "preciseValue",
-            "visitData"        : "data",
+            "visitId"      : "vid",
+            "patientId"    : "pid",
+            "therapistId"  : "tid",
+            "supervisorId" : "superid",
+            "visitDate"    : "vdate",
+            "visitTime"    : "vstime",
+            "visitType"    : "type",
+            "visitBilled"  : "billed",
         ]
 
     }
