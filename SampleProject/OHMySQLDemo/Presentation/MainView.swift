@@ -36,13 +36,22 @@ struct MainView:View
             {
                 NavigationView 
                 {
+                    VisitListView()
+                }
+                .tabItem 
+                {
+                    Label("Visits", systemImage:"list.bullet")
+                }
+                
+                NavigationView 
+                {
                     TaskListView()
                 }
                 .tabItem 
                 {
                     Label("Tasks", systemImage:"list.bullet")
                 }
-                
+
                 ConfigurationView()
                 .tabItem 
                 {

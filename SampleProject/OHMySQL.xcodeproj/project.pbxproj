@@ -20,6 +20,12 @@
 		92D2598F2924125E00B43D8D /* TaskItemRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92775C92291ADEF10097B49C /* TaskItemRepository.swift */; };
 		92D259902924125E00B43D8D /* PersistentCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92775C90291ADEA20097B49C /* PersistentCoordinator.swift */; };
 		92D259912924125E00B43D8D /* TaskItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 925EAB16287C155F00D80CA8 /* TaskItem.swift */; };
+		F06C9B0D2E2165910078F33E /* VisitListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F06C9B0A2E2165910078F33E /* VisitListView.swift */; };
+		F06C9B0E2E2165910078F33E /* VisitListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F06C9B0B2E2165910078F33E /* VisitListViewModel.swift */; };
+		F06C9B0F2E2165910078F33E /* VisitDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F06C9B092E2165910078F33E /* VisitDetailsView.swift */; };
+		F06C9B102E2165910078F33E /* VisitPresentationItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F06C9B0C2E2165910078F33E /* VisitPresentationItem.swift */; };
+		F06C9B132E216BA70078F33E /* VisitItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F06C9B112E216BA70078F33E /* VisitItem.swift */; };
+		F06C9B142E216BA70078F33E /* VisitItemRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F06C9B122E216BA70078F33E /* VisitItemRepository.swift */; };
 		F0756E0F2E20173B00C31B14 /* OpenSSL.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0756E0C2E20173B00C31B14 /* OpenSSL.xcframework */; };
 		F0756E102E20173B00C31B14 /* MySQL.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0756E0B2E20173B00C31B14 /* MySQL.xcframework */; };
 		F0C39DBD2E202E8000DD2746 /* MySQL.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F0DA970B2E20185E007D0457 /* MySQL.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -79,6 +85,12 @@
 		92775C94291ADFBF0097B49C /* TaskListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListViewModel.swift; sourceTree = "<group>"; };
 		92B3E6AA291D96800015062A /* TaskPresentationItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskPresentationItem.swift; sourceTree = "<group>"; };
 		F02436F52E20141600971E33 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
+		F06C9B092E2165910078F33E /* VisitDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisitDetailsView.swift; sourceTree = "<group>"; };
+		F06C9B0A2E2165910078F33E /* VisitListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisitListView.swift; sourceTree = "<group>"; };
+		F06C9B0B2E2165910078F33E /* VisitListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisitListViewModel.swift; sourceTree = "<group>"; };
+		F06C9B0C2E2165910078F33E /* VisitPresentationItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisitPresentationItem.swift; sourceTree = "<group>"; };
+		F06C9B112E216BA70078F33E /* VisitItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisitItem.swift; sourceTree = "<group>"; };
+		F06C9B122E216BA70078F33E /* VisitItemRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisitItemRepository.swift; sourceTree = "<group>"; };
 		F0756E0B2E20173B00C31B14 /* MySQL.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = MySQL.xcframework; sourceTree = "<group>"; };
 		F0756E0C2E20173B00C31B14 /* OpenSSL.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = OpenSSL.xcframework; sourceTree = "<group>"; };
 		F0DA970B2E20185E007D0457 /* MySQL.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = MySQL.xcframework; sourceTree = "<group>"; };
@@ -194,38 +206,12 @@
 		924BF1CE29243187009A9F69 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
-				924BF1D1292431B1009A9F69 /* Common */,
+				F06C9B082E21651C0078F33E /* TaskCode */,
+				F06C9B072E2164850078F33E /* VisitCode */,
 				924BF1D3292431CA009A9F69 /* Configuration */,
 				92775C88291ADD630097B49C /* MainView.swift */,
-				924BF1D2292431BA009A9F69 /* TaskDetails */,
-				924BF1D02924319F009A9F69 /* TaskList */,
 			);
 			path = Presentation;
-			sourceTree = "<group>";
-		};
-		924BF1D02924319F009A9F69 /* TaskList */ = {
-			isa = PBXGroup;
-			children = (
-				92775C8C291ADE370097B49C /* TaskListView.swift */,
-				92775C94291ADFBF0097B49C /* TaskListViewModel.swift */,
-			);
-			path = TaskList;
-			sourceTree = "<group>";
-		};
-		924BF1D1292431B1009A9F69 /* Common */ = {
-			isa = PBXGroup;
-			children = (
-				92B3E6AA291D96800015062A /* TaskPresentationItem.swift */,
-			);
-			path = Common;
-			sourceTree = "<group>";
-		};
-		924BF1D2292431BA009A9F69 /* TaskDetails */ = {
-			isa = PBXGroup;
-			children = (
-				924BF19429240E17009A9F69 /* TaskDetailsView.swift */,
-			);
-			path = TaskDetails;
 			sourceTree = "<group>";
 		};
 		924BF1D3292431CA009A9F69 /* Configuration */ = {
@@ -240,11 +226,35 @@
 		925EAB15287C153400D80CA8 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				F06C9B112E216BA70078F33E /* VisitItem.swift */,
+				F06C9B122E216BA70078F33E /* VisitItemRepository.swift */,
 				92775C90291ADEA20097B49C /* PersistentCoordinator.swift */,
 				925EAB16287C155F00D80CA8 /* TaskItem.swift */,
 				92775C92291ADEF10097B49C /* TaskItemRepository.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		F06C9B072E2164850078F33E /* VisitCode */ = {
+			isa = PBXGroup;
+			children = (
+				F06C9B092E2165910078F33E /* VisitDetailsView.swift */,
+				F06C9B0A2E2165910078F33E /* VisitListView.swift */,
+				F06C9B0B2E2165910078F33E /* VisitListViewModel.swift */,
+				F06C9B0C2E2165910078F33E /* VisitPresentationItem.swift */,
+			);
+			path = VisitCode;
+			sourceTree = "<group>";
+		};
+		F06C9B082E21651C0078F33E /* TaskCode */ = {
+			isa = PBXGroup;
+			children = (
+				92B3E6AA291D96800015062A /* TaskPresentationItem.swift */,
+				924BF19429240E17009A9F69 /* TaskDetailsView.swift */,
+				92775C8C291ADE370097B49C /* TaskListView.swift */,
+				92775C94291ADFBF0097B49C /* TaskListViewModel.swift */,
+			);
+			path = TaskCode;
 			sourceTree = "<group>";
 		};
 		F0756E0D2E20173B00C31B14 /* lib */ = {
@@ -480,6 +490,12 @@
 				F0DA975E2E20185E007D0457 /* NSNumber+OHSerialization.m in Sources */,
 				F0DA975F2E20185E007D0457 /* OHMySQLQueryTimeline.m in Sources */,
 				F0DA97602E20185E007D0457 /* NSString+Utility.m in Sources */,
+				F06C9B0D2E2165910078F33E /* VisitListView.swift in Sources */,
+				F06C9B0E2E2165910078F33E /* VisitListViewModel.swift in Sources */,
+				F06C9B0F2E2165910078F33E /* VisitDetailsView.swift in Sources */,
+				F06C9B132E216BA70078F33E /* VisitItem.swift in Sources */,
+				F06C9B142E216BA70078F33E /* VisitItemRepository.swift in Sources */,
+				F06C9B102E2165910078F33E /* VisitPresentationItem.swift in Sources */,
 				F0DA97612E20185E007D0457 /* OHMySQLQueryRequest.m in Sources */,
 				F0DA97622E20185E007D0457 /* NSObject+Mapping.m in Sources */,
 				F0DA97632E20185E007D0457 /* OHMySQLQueryRequestFactory.m in Sources */,
@@ -624,7 +640,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.drc.01.17.25C191;
+				CURRENT_PROJECT_VERSION = 1.drc.01.01.25C192;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_ASSET_PATHS = "\"OHMySQLDemo/Preview Content\"";
 				DEVELOPMENT_TEAM = J434W9VGHF;
@@ -669,7 +685,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.drc.01.17.25C191;
+				CURRENT_PROJECT_VERSION = 1.drc.01.01.25C192;
 				DEVELOPMENT_ASSET_PATHS = "\"OHMySQLDemo/Preview Content\"";
 				DEVELOPMENT_TEAM = J434W9VGHF;
 				ENABLE_PREVIEWS = YES;

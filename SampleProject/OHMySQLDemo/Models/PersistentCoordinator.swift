@@ -72,31 +72,31 @@ final class PersistentCoordinator
     init() 
     {
 
-        let sCurrMethod:String = #function
-        let sCurrMethodDisp    = "\(ClassInfo.sClsDisp)'"+sCurrMethod+"':"
+        let sCurrMethod:String     = #function
+        let sCurrMethodDisp:String = "\(ClassInfo.sClsDisp)'"+sCurrMethod+"':"
           
         self.coordinator = Self.makeCoordinator(databaseName:"ptsdb")
     //  self.coordinator = Self.makeCoordinator(databaseName:"mysql")
         
         self.xcgLogMsg("\(sCurrMethodDisp) Invoked...")
         
-        do
-        {
-            self.connect()
-
-        //  let query        = MySQLQueryRequestFactory.select("visit", condition:"select * from visit where vdate >= '2025-07-10'")
-            let mySqlQuery   = MySQLQueryRequestFactory.select("visit", condition:"vdate >= '2025-07-10'")
-            let mySqlResults = try MySQLContainer.shared.mainQueryContext?.executeQueryRequestAndFetchResult(mySqlQuery)
-
-            self.xcgLogMsg("\(sCurrMethodDisp) 'mySqlResults' object is 'typeOf' [\(String(describing: type(of: mySqlResults)))]...")
-            self.xcgLogMsg("\(sCurrMethodDisp) 'mySqlResults' object contains #(\(String(describing: mySqlResults?.count))) object(s)...")
-            self.xcgLogMsg("\(sCurrMethodDisp) 'mySqlResults' object is [\(String(describing: mySqlResults))]...")
-        //  self.xcgLogMsg("\(sCurrMethodDisp) Intermediate - 'mySqlResults' is [\(String(describing: mySqlResults))]...")
-        }
-        catch
-        {
-            self.xcgLogMsg("\(sCurrMethodDisp) Intermediate - MySQL 'select' failed - Details are [\(error)] - Error!")
-        }
+    //  do
+    //  {
+    //      self.connect()
+    //
+    //  //  let query        = MySQLQueryRequestFactory.select("visit", condition:"select * from visit where vdate >= '2025-07-10'")
+    //      let mySqlQuery   = MySQLQueryRequestFactory.select("visit", condition:"vdate >= '2025-07-10'")
+    //      let mySqlResults = try MySQLContainer.shared.mainQueryContext?.executeQueryRequestAndFetchResult(mySqlQuery)
+    //
+    //      self.xcgLogMsg("\(sCurrMethodDisp) 'mySqlResults' object is 'typeOf' [\(String(describing: type(of: mySqlResults)))]...")
+    //      self.xcgLogMsg("\(sCurrMethodDisp) 'mySqlResults' object contains #(\(String(describing: mySqlResults?.count))) object(s)...")
+    //      self.xcgLogMsg("\(sCurrMethodDisp) 'mySqlResults' object is [\(String(describing: mySqlResults))]...")
+    //  //  self.xcgLogMsg("\(sCurrMethodDisp) Intermediate - 'mySqlResults' is [\(String(describing: mySqlResults))]...")
+    //  }
+    //  catch
+    //  {
+    //      self.xcgLogMsg("\(sCurrMethodDisp) Intermediate - MySQL 'select' failed - Details are [\(error)] - Error!")
+    //  }
 
         self.xcgLogMsg("\(sCurrMethodDisp) Exiting...")
 
@@ -106,15 +106,18 @@ final class PersistentCoordinator
     
     private func xcgLogMsg(_ sMessage: String)
     {
-        let dtFormatterDateStamp: DateFormatter = DateFormatter()
-        dtFormatterDateStamp.locale = Locale(identifier: "en_US")
-        dtFormatterDateStamp.timeZone = TimeZone.current
+
+        let dtFormatterDateStamp:DateFormatter = DateFormatter()
+
+        dtFormatterDateStamp.locale     = Locale(identifier: "en_US")
+        dtFormatterDateStamp.timeZone   = TimeZone.current
         dtFormatterDateStamp.dateFormat = "yyyy-MM-dd hh:mm:ss.SSS"
 
-        let dateStampNow: Date = .now
-        let sDateStamp: String = ("\(dtFormatterDateStamp.string(from: dateStampNow)) >> ")
+        let dateStampNow:Date = .now
+        let sDateStamp:String = ("\(dtFormatterDateStamp.string(from: dateStampNow)) >> ")
 
         print("\(sDateStamp)\(sMessage)")
+
     }
 
     func reconnect()->Bool 
